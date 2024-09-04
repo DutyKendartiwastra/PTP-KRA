@@ -85,6 +85,9 @@
      "esri/layers/MapImageLayer",
      "esri/layers/WMSLayer",
      "esri/layers/WFSLayer",
+     "esri/symbols/CIMSymbol",
+     "esri/symbols/support/cimSymbolUtils",
+     "esri/symbols/WebStyleSymbol",
      ],(
       Map,
       MapView,
@@ -111,6 +114,9 @@
       MapImageLayer,
       WMSLayer,
       WFSLayer,
+      CIMSymbol,
+      cimSymbolUtils,
+      WebStyleSymbol,
       )=>{
       //Buat Simbologi Batas Admin Api-api
       const Batas1 = {
@@ -140,6 +146,299 @@
           type: "simple",
           title:"Batas KEC",
           symbol: BatasKEC} 
+      
+      //Simbologi LSD
+      const symbol_LSD ={
+            type: "cim",
+            data: {
+              type: "CIMSymbolReference",
+              symbol: {
+                // CIM polygon symbol
+                type: "CIMPolygonSymbol",
+                symbolLayers: [{
+                  // light blue outline around the polygon
+                    type: "CIMSolidStroke",
+                    enable: true,
+                    width: 0.8,
+                    color: [26, 83, 25,108]},
+                   // light blue hatch fill
+                   {type: "CIMHatchFill",
+                    enable: true,
+                    lineSymbol: {
+                      type: "CIMLineSymbol", // CIM line symbol that makes up the line inside the hatch fill
+                      symbolLayers: [{
+                          type      : "CIMSolidStroke",
+                          enable    : true,
+                          capStyle  : "Butt",
+                          joinStyle : "Miter",
+                          miterLimit: 10,
+                          width     : 0.5,
+                          color     : [128, 175, 129,255]
+                      }]
+                    },
+                    rotation: 45, // rotation of the lines
+                    separation: 5 // distance between lines in hatch fill
+                  },
+                  //
+                  {type: "CIMHatchFill",
+                    enable: true,
+                    lineSymbol: {
+                      type: "CIMLineSymbol", // CIM line symbol that makes up the line inside the hatch fill
+                      symbolLayers: [{
+                          type        : "CIMSolidStroke",
+                          enable      : true,
+                          capStyle    : "Butt",
+                          joinStyle   : "Miter",
+                          miterLimit  : 10,
+                          width       : 0.5,
+                          color       : [128, 175, 129,255]
+                      }]
+                    },
+                    rotation: -45, // rotation of the lines
+                    separation: 5 // distance between lines in hatch fill
+                  },
+                ],
+        }}};
+      //CUSTOMISASI SIMBOL RTRW
+      //Kawasan Permukiman Perkotaan
+      const PERKOTAAN ={
+            type: "cim",
+            data: {
+              type: "CIMSymbolReference",
+              symbol: {
+                // CIM polygon symbol
+                type: "CIMPolygonSymbol",
+                symbolLayers: [{
+                  // light blue outline around the polygon
+                    type: "CIMSolidStroke",
+                    enable: true,
+                    width: 0.8,
+                    color: [233, 239, 236,108]},
+                   // light blue hatch fill
+                   {type: "CIMHatchFill",
+                    enable: true,
+                    lineSymbol: {
+                      type: "CIMLineSymbol", // CIM line symbol that makes up the line inside the hatch fill
+                      symbolLayers: [{
+                          type      : "CIMSolidStroke",
+                          enable    : true,
+                          capStyle  : "Butt",
+                          joinStyle : "Miter",
+                          miterLimit: 10,
+                          width     : 0.5,
+                          color     : [199,37,62,255]
+                      }]
+                    },
+                    rotation: 45, // rotation of the lines
+                    separation: 5 // distance between lines in hatch fill
+                  },
+                  //
+                  {type: "CIMHatchFill",
+                    enable: true,
+                    lineSymbol: {
+                      type: "CIMLineSymbol", // CIM line symbol that makes up the line inside the hatch fill
+                      symbolLayers: [{
+                          type        : "CIMSolidStroke",
+                          enable      : true,
+                          capStyle    : "Butt",
+                          joinStyle   : "Miter",
+                          miterLimit  : 10,
+                          width       : 0.5,
+                          color       : [199,37,62,255]
+                      }]
+                    },
+                    rotation: -45, // rotation of the lines
+                    separation: 5 // distance between lines in hatch fill
+                  },
+                ],
+        }}};
+      //Kawasan Permukiman Perdesaan
+      const PERDESAAN ={
+            type: "cim",
+            data: {
+              type: "CIMSymbolReference",
+              symbol: {
+                // CIM polygon symbol
+                type: "CIMPolygonSymbol",
+                symbolLayers: [{
+                  // light blue outline around the polygon
+                    type: "CIMSolidStroke",
+                    enable: true,
+                    width: 0.8,
+                    color: [233, 239, 236,108]},
+                   // light blue hatch fill
+                   {type: "CIMHatchFill",
+                    enable: true,
+                    lineSymbol: {
+                      type: "CIMLineSymbol", // CIM line symbol that makes up the line inside the hatch fill
+                      symbolLayers: [{
+                          type      : "CIMSolidStroke",
+                          enable    : true,
+                          capStyle  : "Butt",
+                          joinStyle : "Miter",
+                          miterLimit: 10,
+                          width     : 1,
+                          color     : [232, 92, 13,255]
+                      }]
+                    },
+                    rotation: 45, // rotation of the lines
+                    separation: 5 // distance between lines in hatch fill
+                  },
+                  //
+                  {type: "CIMHatchFill",
+                    enable: true,
+                    lineSymbol: {
+                      type: "CIMLineSymbol", // CIM line symbol that makes up the line inside the hatch fill
+                      symbolLayers: [{
+                          type        : "CIMSolidStroke",
+                          enable      : true,
+                          capStyle    : "Butt",
+                          joinStyle   : "Miter",
+                          miterLimit  : 10,
+                          width       : 0.5,
+                          color       : [232,92,13,255]
+                      }]
+                    },
+                    rotation: -45, // rotation of the lines
+                    separation: 5 // distance between lines in hatch fill
+                  },
+                ],
+        }}};
+      //Kawasan Industri
+      const INDUSTRI ={
+            type: "cim",
+            data: {
+              type: "CIMSymbolReference",
+              symbol: {
+                // CIM polygon symbol
+                type: "CIMPolygonSymbol",
+                symbolLayers: [{
+                  // light blue outline around the polygon
+                    type: "CIMSolidStroke",
+                    enable: true,
+                    width: 0.8,
+                    color: [233, 239, 236,108]},
+                   // light blue hatch fill
+                   {type: "CIMHatchFill",
+                    enable: true,
+                    lineSymbol: {
+                      type: "CIMLineSymbol", // CIM line symbol that makes up the line inside the hatch fill
+                      symbolLayers: [{
+                          type      : "CIMSolidStroke",
+                          enable    : true,
+                          capStyle  : "Butt",
+                          joinStyle : "Miter",
+                          miterLimit: 10,
+                          width     : 1,
+                          color     : [182, 146, 194,255]
+                      }]
+                    },
+                    rotation: 45, // rotation of the lines
+                    separation: 5 // distance between lines in hatch fill
+                  },
+                ],
+        }}};
+      //Kawasan Hortikultura
+      const HORTIKULTURA ={
+            type: "cim",
+            data: {
+              type: "CIMSymbolReference",
+              symbol: {
+                // CIM polygon symbol
+                type: "CIMPolygonSymbol",
+                symbolLayers: [{
+                  // light blue outline around the polygon
+                    type: "CIMSolidStroke",
+                    enable: true,
+                    width: 0.8,
+                    color: [233, 239, 236,108]},
+                   // light blue hatch fill
+                   {type: "CIMHatchFill",
+                    enable: true,
+                    lineSymbol: {
+                      type: "CIMLineSymbol", // CIM line symbol that makes up the line inside the hatch fill
+                      symbolLayers: [{
+                          type      : "CIMSolidStroke",
+                          enable    : true,
+                          capStyle  : "Butt",
+                          joinStyle : "Miter",
+                          miterLimit: 10,
+                          width     : 2,
+                          color     : [145, 221, 207,255]
+                      }]
+                    },
+                    rotation: 45, // rotation of the lines
+                    separation: 6 // distance between lines in hatch fill
+                  },
+                ],
+        }}};
+      //Simbologi RTRW
+      const renderer_RTRW={
+        type: "unique-value",
+        legendOptions: {
+         title: "RTRW Kab. Karanganyar Tahun 2019"},
+         field: "NAMOBJ",
+         uniqueValueInfos:[
+          {value:"Kawasan Permukiman Perkotaan",
+           symbol: PERKOTAAN,
+          },
+          {value:"Kawasan Permukiman Perdesaan",
+           symbol: PERDESAAN,
+          },
+          {value:"Sempadan Sungai",
+           symbol: {
+              type: "simple-fill",
+              color: [63, 162, 246,0.5],
+              outline:{
+                color: [233,239,236,80],
+                width: "0.8px",
+                style: "solid"}
+          }},
+          {value:"Kawasan Tanaman Pangan",
+           symbol: {
+              type: "simple-fill",
+              color: [180,227,128,0.5],
+              outline:{
+                color: [233,239,236,80],
+                width: "0.8px",
+                style: "solid"}
+          }},
+          {value:"Sempadan Mata Air",
+           symbol: {
+              type: "simple-fill",
+              color: [15,103,177,0.5],
+              outline:{
+                color: [233,239,236,80],
+                width: "0.8px",
+                style: "solid"}
+          }},
+          {value:"Kawasan Industri",
+           symbol: INDUSTRI,
+          },
+          {value:"Kawasan Hortikultura",
+           symbol: HORTIKULTURA,
+          },
+          {value:"Kawasan Rawan Bencana Gerakan Tanah",
+           symbol: {
+              type: "simple-fill",
+              color: [247, 220, 185,0.5],
+              outline:{
+                color: [233,239,236,80],
+                width: "0.8px",
+                style: "solid"}
+          }},
+          {value:"Kawasan Cagar Budaya",
+           symbol: {
+              type: "simple-fill",
+              color: [233, 239, 236,0.5],
+              outline:{
+                color: [233,239,236,80],
+                width: "0.8px",
+                style: "solid"}
+          }},
+        ]
+      }
+      
       // Renderer Bidang PTP
       const renderer_Bidang_PTP = {
         type: "unique-value",
@@ -253,6 +552,10 @@
                 ],
         }]
       };
+      //Pop Up Template RTRW
+      const popup_RTRW={
+        title:"Kawasan : {NAMOBJ}",
+      };
       //Insert Basemap ATR/BPN
       const PetaDasar = new ImageryLayer({
           url: "https://petadasar.atrbpn.go.id/main/wms/{x}/{y}/{z}",
@@ -271,6 +574,10 @@
         url:"https://raw.githubusercontent.com/DutyKendartiwastra/PTP-KRA/main/LSD_compressed.geojson",
         title:"Lahan Sawah Dilindungi",
         visible:false,
+        renderer: {
+          type: "simple",
+          symbol:symbol_LSD,
+      },
       });
       //Batas Kelurahan
       const BatasAdmin_Kelurahan= new GeoJSONLayer({
@@ -285,7 +592,9 @@
       const RTRW= new GeoJSONLayer({
         url:"https://raw.githubusercontent.com/DutyKendartiwastra/PTP-KRA/main/RTRW.geojson",
         title:"RTRW Kabupaten Karanganyar 2019",
+        renderer:renderer_RTRW,
         visible:true,
+        //popupTemplate:popup_RTRW,
       });
       //Bidang PTP
       const BidangPTP= new GeoJSONLayer({
@@ -316,12 +625,11 @@
       });
 
       // List Layer
+      map.add(LSD);
+      map.add(RTRW);
+      map.add(BidangPTP);
       map.add(BatasAdmin_Kelurahan);
       map.add(Batas_Kecamatan);
-      map.add(RTRW);
-      map.add(LSD);
-      map.add(BidangPTP);
-      
       
       // Legend Muka Peta 1
       const legend = new Expand({
@@ -332,6 +640,10 @@
               {
                 layer: BidangPTP,
                 title: "KETERANGAN"
+              },
+              {
+                layer: RTRW,
+                title: ""
               },
             ],
           view: View,
@@ -367,7 +679,7 @@
       const swipe = new Swipe({
           leadingLayers: ([BidangPTP,RTRW]),
           trailingLayers: ([BidangPTP,LSD]),
-          position: 1, // set position of widget to 35%
+          position: 0, // set position of widget to 35%
           view: View
         });
 
